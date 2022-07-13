@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manger User</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container-fluid text-center">
+   <div> <h1> Manger User </h1></div>
+    <div class="h3" >
+        <a th:href="@{/users/new}">
+            Add
+        </a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center" >
+    [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>E-mail</th>
+                <th>First-name</th>
+                <th>Last-name</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="user : ${listUsers}">
+                <tr>
+                    <td>[[${user.id}]]</td>
+                    <td>[[${user.email}]]</td>
+                    <td>[[${user.firstName}]]</td>
+                    <td>[[${user.lastName}]]</td>
+                    <td>
+                        <a th:href="@{'/users/edit/' + ${user.id}}" class="h4 mr-3">Edit</a>
+                        <a th:href="@{'/users/delete/' + ${user.id}}" class="h4">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
